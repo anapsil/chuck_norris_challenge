@@ -14,3 +14,4 @@
 .cxx
 /.idea/markdown-navigator.xml
 /.idea/markdown-navigator-enh.xml
+/buildSrc/build/

@@ -1,4 +1,4 @@
-name: Android CI Unit Test
+name: Android CI Unit Test and Code Analisys
 
 on:
   push:
@@ -6,8 +6,8 @@ on:
     - '*'
 
 jobs:
-  test:
-    name: Run Unit Tests
+  build:
+    name: Run Detekt and Unit Tests
     runs-on: ubuntu-latest
 
     steps:
@@ -16,5 +16,11 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
+    - name: Build
+        run: ./gradlew build
+    - name: Detekt
+        uses: natiginfo/action-detekt-all@1.12.0-RC1
+        with:
+          args: --fail-fast --config config/detekt/detekt.yml
     - name: Unit tests
-      run: ./gradlew test --stacktrace
+      run: ./gradlew testDebugUnitTest --stacktrace

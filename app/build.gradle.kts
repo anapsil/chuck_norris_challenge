@@ -5,6 +5,10 @@ plugins {
     kotlin("kapt")
 }
 
+apply {
+    from("$rootDir/config/detekt/detekt.gradle")
+}
+
 android {
     compileSdkVersion(Config.Android.compileSdkVersion)
 

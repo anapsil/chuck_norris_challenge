@@ -1,9 +1,11 @@
 object Config {
     const val kotlinVersion = "1.4.0"
+    const val detektPluginVersion = "1.12.0-RC1"
 
     object BuildPlugins {
         const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         const val androidGradlePlugin = "com.android.tools.build:gradle:4.0.1"
+        const val detektPlugin = "io.gitlab.arturbosch.detekt"
     }
 
     object Android {

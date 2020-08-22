@@ -9,6 +9,10 @@ buildscript {
     }
 }
 
+plugins {
+    id(Config.BuildPlugins.detektPlugin).version(Config.detektPluginVersion)
+}
+
 allprojects {
     repositories {
         jcenter()
