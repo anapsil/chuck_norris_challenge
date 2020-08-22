@@ -21,6 +21,8 @@ object Config {
         const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
         const val androidCoreKtx = "androidx.core:core-ktx:1.3.1"
         const val androidAppCompat = "androidx.appcompat:appcompat:1.2.0"
+        const val androidConstraintLayout = "androidx.constraintlayout:constraintlayout:1.1.3"
+        const val androidMaterialDesign = "com.google.android.material:material:1.1.0"
     }
 
     object TestLibs {
