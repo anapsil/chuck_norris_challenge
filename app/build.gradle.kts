@@ -52,6 +52,7 @@ android {
 
 dependencies {
     implementation(Config.Libs.kotlin)
+    implementation(Config.Libs.kotlinCoroutines)
     implementation(Config.Libs.androidCoreKtx)
     implementation(Config.Libs.androidAppCompat)
     implementation(Config.Libs.androidCardView)
@@ -60,6 +61,10 @@ dependencies {
     implementation(Config.Libs.androidMaterialDesign)
     implementation(Config.Libs.jetpackViewModel)
     implementation(Config.Libs.jetpackLiveData)
+    implementation(Config.Libs.jetpackRoom)
+    implementation(Config.Libs.jetpackRoomKtx)
+    kapt(Config.Libs.jetpackRoomCompiler)
+
     implementation(Config.Libs.koinAndroid)
     implementation(Config.Libs.koinAndroidViewModel)
 

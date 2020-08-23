@@ -5,6 +5,7 @@ object Config {
     const val koinVersion = "2.1.6"
     const val mockkVersion = "1.10.0"
     const val androidTestVersion = "1.1.1"
+    const val roomVersion = "2.2.5"
 
     object BuildPlugins {
         const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
@@ -23,6 +24,7 @@ object Config {
 
     object Libs {
         const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+        const val kotlinCoroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9"
         const val androidCoreKtx = "androidx.core:core-ktx:1.3.1"
         const val androidAppCompat = "androidx.appcompat:appcompat:1.2.0"
         const val androidCardView = "androidx.cardview:cardview:1.0.0"
@@ -31,6 +33,9 @@ object Config {
         const val androidMaterialDesign = "com.google.android.material:material:1.1.0"
         const val jetpackViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
         const val jetpackLiveData = "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
+        const val jetpackRoom = "androidx.room:room-runtime:$roomVersion"
+        const val jetpackRoomCompiler = "androidx.room:room-compiler:$roomVersion"
+        const val jetpackRoomKtx = "androidx.room:room-ktx:$roomVersion"
         const val koinCore = "org.koin:koin-core:$koinVersion"
         const val koinAndroid = "org.koin:koin-android:$koinVersion"
         const val koinAndroidViewModel = "org.koin:koin-androidx-viewmodel:$koinVersion"
