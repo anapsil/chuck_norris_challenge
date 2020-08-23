@@ -296,6 +296,7 @@ formatting:
     autoCorrect: true
   NoWildcardImports:
     active: true
+    excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**']
   PackageName:
     active: true
     autoCorrect: true
@@ -564,7 +565,7 @@ style:
     active: false
   MaxLineLength:
     active: true
-    maxLineLength: 120
+    maxLineLength: 150
     excludePackageStatements: true
     excludeImportStatements: true
     excludeCommentStatements: false

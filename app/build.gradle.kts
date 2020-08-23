@@ -3,6 +3,7 @@ plugins {
     kotlin("android")
     kotlin("android.extensions")
     kotlin("kapt")
+    id("kotlin-android")
 }
 
 apply {
@@ -13,9 +14,9 @@ android {
     compileSdkVersion(Config.Android.compileSdkVersion)
 
     defaultConfig {
-        applicationId = Config.Android.applicationId
         minSdkVersion(Config.Android.minSdkVersion)
         targetSdkVersion(Config.Android.targetSdkVersion)
+        applicationId = Config.Android.applicationId
         versionCode = Config.Android.versionCode
         versionName = Config.Android.versionName
 
@@ -31,6 +32,19 @@ android {
         }
     }
 
+    buildFeatures {
+        viewBinding = true
+    }
+
+    testOptions {
+        unitTests.apply {
+            isIncludeAndroidResources = true
+            isReturnDefaultValues = true
+        }
+
+        animationsDisabled = true
+    }
+
     sourceSets.configureEach {
         java.setSrcDirs(java.srcDirs + File("src/$name/kotlin"))
     }
@@ -40,7 +54,22 @@ dependencies {
     implementation(Config.Libs.kotlin)
     implementation(Config.Libs.androidCoreKtx)
     implementation(Config.Libs.androidAppCompat)
+    implementation(Config.Libs.androidCardView)
+    implementation(Config.Libs.androidConstraintLayout)
+    implementation(Config.Libs.androidRecyclerView)
+    implementation(Config.Libs.androidMaterialDesign)
+    implementation(Config.Libs.jetpackViewModel)
+    implementation(Config.Libs.jetpackLiveData)
+    implementation(Config.Libs.koinAndroid)
+    implementation(Config.Libs.koinAndroidViewModel)
+
     testImplementation(Config.TestLibs.junit)
+    testImplementation(Config.TestLibs.androidJunitExtension)
+    testImplementation(Config.TestLibs.androidTestCore)
+    testImplementation(Config.TestLibs.googleTruth)
+    testImplementation(Config.TestLibs.robolectric)
+    testImplementation(Config.TestLibs.mockk)
+
     androidTestImplementation(Config.TestLibs.androidJunitExtension)
     androidTestImplementation(Config.TestLibs.androidEspresso)
 }
