@@ -5,4 +5,9 @@
     <string name="facts_empty_state_message">Ops, no facts yet! \n\nClick on search menu for a \nChuck Norris Fact</string>
     <string name="action_share_content_description">Share fact</string>
     <string name="no_category_label">UNCATEGORIZED</string>
+
+    <string name="search_facts">Search Facts</string>
+    <string name="search_facts_hint">Enter your search term</string>
+    <string name="search_suggestions_label">Suggestions</string>
+    <string name="past_searches_label">Past Searches</string>
 </resources>

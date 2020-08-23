@@ -11,3 +11,7 @@ fun AppCompatActivity.shareText(text: String) {
     }
     startActivity(Intent.createChooser(shareIntent, null))
 }
+
+fun AppCompatActivity.startActivityForResult(cls: Class<*>, requestCode: Int) {
+    startActivityForResult(Intent(this, cls), requestCode)
+}

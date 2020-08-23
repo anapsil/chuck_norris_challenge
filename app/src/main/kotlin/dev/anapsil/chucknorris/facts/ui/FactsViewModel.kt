@@ -19,4 +19,8 @@ class FactsViewModel : ViewModel() {
             FactModel("fankljfajsdacsj", "https://www.google.com", "Religons: HINDU JEWISH CHUCK NORRIS", listOf())
         )
     }
+
+    fun searchFacts(query: String) {
+        loadFacts()
+    }
 }
