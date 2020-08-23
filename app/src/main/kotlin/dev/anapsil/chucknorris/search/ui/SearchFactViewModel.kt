@@ -5,8 +5,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dev.anapsil.chucknorris.search.data.local.SearchTermRepository
 import kotlinx.coroutines.launch
+import java.util.Date
 
-class SearchFactViewModel(private val repository: SearchTermRepository) : ViewModel() {
+class SearchFactViewModel(private val repository: SearchTermRepository, private val now: Date) : ViewModel() {
     val terms = MutableLiveData<List<String>>()
 
     fun loadAllTerms() {
@@ -17,7 +18,7 @@ class SearchFactViewModel(private val repository: SearchTermRepository) : ViewMo
 
     fun saveTerm(term: String) {
         viewModelScope.launch {
-            repository.insertTerms(term)
+            repository.insertTerms(term, now)
         }
     }
 }

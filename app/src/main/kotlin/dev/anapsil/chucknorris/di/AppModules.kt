@@ -14,9 +14,9 @@ val appModule = module {
     factory { Date() }
 
     viewModel { FactsViewModel() }
-    viewModel { SearchFactViewModel(get()) }
+    viewModel { SearchFactViewModel(get(), get()) }
 
-    single { SearchTermRepository(get(), get()) }
+    single { SearchTermRepository(get()) }
 
     single { Room.databaseBuilder(androidContext(), AppDatabase::class.java, "chuck-norris-facts").build() }
     single { get<AppDatabase>().searchTermDao() }

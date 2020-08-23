@@ -7,5 +7,5 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "search_terms")
 data class SearchTermEntity(
     @PrimaryKey @ColumnInfo(name = "search_term") val searchTerm: String,
-    @ColumnInfo(name = "creation_date") val creationDate: String
+    @ColumnInfo(name = "creation_date") val creationDate: Long
 )

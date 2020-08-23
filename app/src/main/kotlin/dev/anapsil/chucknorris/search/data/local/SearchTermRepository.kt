@@ -4,9 +4,9 @@ import dev.anapsil.chucknorris.database.daos.SearchTermsDao
 import dev.anapsil.chucknorris.database.entities.SearchTermEntity
 import java.util.Date
 
-class SearchTermRepository(private val dao: SearchTermsDao, private val now: Date) {
+class SearchTermRepository(private val dao: SearchTermsDao) {
 
     suspend fun getAllTerms(): List<String> = dao.getAll().map { it.searchTerm }
 
-    suspend fun insertTerms(term: String) = dao.insertAll(SearchTermEntity(term, now.toString()))
+    suspend fun insertTerms(term: String, now: Date) = dao.insertAll(SearchTermEntity(term, now.time))
 }
