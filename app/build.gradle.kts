@@ -36,6 +36,15 @@ android {
         viewBinding = true
     }
 
+    testOptions {
+        unitTests.apply {
+            isIncludeAndroidResources = true
+            isReturnDefaultValues = true
+        }
+
+        animationsDisabled = true
+    }
+
     sourceSets.configureEach {
         java.setSrcDirs(java.srcDirs + File("src/$name/kotlin"))
     }
@@ -55,6 +64,11 @@ dependencies {
     implementation(Config.Libs.koinAndroidViewModel)
 
     testImplementation(Config.TestLibs.junit)
+    testImplementation(Config.TestLibs.androidJunitExtension)
+    testImplementation(Config.TestLibs.androidTestCore)
+    testImplementation(Config.TestLibs.googleTruth)
+    testImplementation(Config.TestLibs.robolectric)
+    testImplementation(Config.TestLibs.mockk)
 
     androidTestImplementation(Config.TestLibs.androidJunitExtension)
     androidTestImplementation(Config.TestLibs.androidEspresso)

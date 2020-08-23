@@ -3,6 +3,8 @@ object Config {
     const val detektPluginVersion = "1.12.0-RC1"
     const val lifecycleVersion = "2.2.0"
     const val koinVersion = "2.1.6"
+    const val mockkVersion = "1.10.0"
+    const val androidTestVersion = "1.1.1"
 
     object BuildPlugins {
         const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
@@ -36,7 +38,12 @@ object Config {
 
     object TestLibs {
         const val junit = "junit:junit:4.12"
-        const val androidJunitExtension = "androidx.test.ext:junit:1.1.1"
+        const val androidJunitExtension = "androidx.test.ext:junit:$androidTestVersion"
+        const val androidTruthExtension = "androidx.test.ext:truth:$androidTestVersion"
+        const val androidTestCore = "androidx.test:core:$androidTestVersion"
+        const val googleTruth = "com.google.truth:truth:0.42"
         const val androidEspresso = "androidx.test.espresso:espresso-core:3.2.0"
+        const val robolectric = "org.robolectric:robolectric:4.3"
+        const val mockk = "io.mockk:mockk:$mockkVersion"
     }
 }

@@ -24,10 +24,11 @@ class FactsAdapter(private val onShareClick: (String) -> Unit) : RecyclerView.Ad
 
     override fun getItemCount() = items.size
 
-    class FactsViewHolder(private val binding: ItemFactsBinding) : RecyclerView.ViewHolder(binding.root) {
+    class FactsViewHolder(val binding: ItemFactsBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(fact: FactModel, onShareClick: (String) -> Unit) {
             with(binding) {
                 factText.text = fact.value
+                factCategory.text = fact.categories.firstOrNull()
                 actionShare.setOnClickListener {
                     onShareClick(fact.url)
                 }

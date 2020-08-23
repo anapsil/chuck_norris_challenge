@@ -296,6 +296,7 @@ formatting:
     autoCorrect: true
   NoWildcardImports:
     active: true
+    excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**']
   PackageName:
     active: true
     autoCorrect: true
