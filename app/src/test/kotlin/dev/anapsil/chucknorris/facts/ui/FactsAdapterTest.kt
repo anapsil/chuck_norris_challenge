@@ -6,7 +6,11 @@ import com.google.common.truth.Truth.assertThat
 import dev.anapsil.chucknorris.R
 import dev.anapsil.chucknorris.common.ui.shareText
 import dev.anapsil.chucknorris.facts.data.model.FactModel
-import io.mockk.*
+import io.mockk.Runs
+import io.mockk.every
+import io.mockk.just
+import io.mockk.mockk
+import io.mockk.verify
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
@@ -26,7 +30,7 @@ class FactsAdapterTest {
             id = "XvhvQJ7JRhG_uSo7-bXLdA",
             url = "",
             value = "Religons: HINDU JEWISH CHUCK NORRIS",
-            listOf()
+            listOf("history")
         ),
         FactModel(
             id = "yWXM2uHiT5O31Qo19zRURw",
@@ -77,7 +81,7 @@ class FactsAdapterTest {
     }
 
     @Test
-    fun `checks that FactsViewHolder_bind setup views correctly`() {
+    fun `checks that FactsViewHolder_bind setup views correctly for fact without category`() {
         val callback = mockk<(String) -> Unit>()
         val holder = factsAdapter.onCreateViewHolder(parent, 0)
         every { callback("https://api.chucknorris.io/jokes/yWXM2uHiT5O31Qo19zRURw") } just Runs
@@ -88,7 +92,22 @@ class FactsAdapterTest {
         verify { callback("https://api.chucknorris.io/jokes/yWXM2uHiT5O31Qo19zRURw") }
         assertThat(holder.binding.factText.text)
             .isEqualTo("Chuck Norris speaks fluent Klingon, just so he can slaughter any nerd he hears speaking it.")
-        assertThat(holder.binding.factCategory.text).isEqualTo("")
+        assertThat(holder.binding.factCategory.text).isEqualTo("UNCATEGORIZED")
+    }
+
+    @Test
+    fun `checks that FactsViewHolder_bind setup views correctly for fact with category`() {
+        val callback = mockk<(String) -> Unit>()
+        val holder = factsAdapter.onCreateViewHolder(parent, 0)
+        every { callback(any()) } just Runs
+
+        holder.bind(facts[0], callback)
+        holder.binding.actionShare.performClick()
+
+        verify { callback(any()) }
+        assertThat(holder.binding.factText.text)
+            .isEqualTo("Religons: HINDU JEWISH CHUCK NORRIS")
+        assertThat(holder.binding.factCategory.text).isEqualTo("HISTORY")
     }
 
     @Test
@@ -98,8 +117,8 @@ class FactsAdapterTest {
 
         holder.bind(facts[1], callback)
 
-        assertThat(holder.binding.factText.text.length).isGreaterThan(80)
-        assertThat(holder.binding.factText.textSize).isEqualTo(18f)
+        assertThat(holder.binding.factText.text.length).isGreaterThan(TEXT_LENGTH_LIMIT)
+        assertThat(holder.binding.factText.textSize).isEqualTo(FONT_SIZE)
     }
 
     @Test
@@ -109,7 +128,7 @@ class FactsAdapterTest {
 
         holder.bind(facts[0], callback)
 
-        assertThat(holder.binding.factText.text.length).isAtMost(80)
-        assertThat(holder.binding.factText.textSize).isEqualTo(24f)
+        assertThat(holder.binding.factText.text.length).isAtMost(TEXT_LENGTH_LIMIT)
+        assertThat(holder.binding.factText.textSize).isEqualTo(LARGE_FONT_SIZE)
     }
 }

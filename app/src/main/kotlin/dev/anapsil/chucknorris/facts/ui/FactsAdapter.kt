@@ -4,9 +4,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import dev.anapsil.chucknorris.R
 import dev.anapsil.chucknorris.databinding.ItemFactsBinding
 import dev.anapsil.chucknorris.facts.data.model.FactModel
 import dev.anapsil.chucknorris.facts.ui.FactsAdapter.FactsViewHolder
+import java.util.Locale
 
 const val TEXT_LENGTH_LIMIT = 80
 const val FONT_SIZE = 18F
@@ -34,7 +36,11 @@ class FactsAdapter(private val onShareClick: (String) -> Unit) : RecyclerView.Ad
             with(binding) {
                 factText.text = fact.value
                 changeFontSize(factText)
-                factCategory.text = fact.categories.firstOrNull()
+                fact.categories.firstOrNull()?.let {
+                    factCategory.text = it.toUpperCase(Locale.getDefault())
+                } ?: run {
+                    factCategory.text = this.root.context.getString(R.string.no_category_label)
+                }
                 actionShare.setOnClickListener {
                     onShareClick(fact.url)
                 }
