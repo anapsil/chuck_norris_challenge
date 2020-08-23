@@ -1,6 +1,8 @@
 object Config {
     const val kotlinVersion = "1.4.0"
     const val detektPluginVersion = "1.12.0-RC1"
+    const val lifecycleVersion = "2.2.0"
+    const val koinVersion = "2.1.6"
 
     object BuildPlugins {
         const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
@@ -21,8 +23,15 @@ object Config {
         const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
         const val androidCoreKtx = "androidx.core:core-ktx:1.3.1"
         const val androidAppCompat = "androidx.appcompat:appcompat:1.2.0"
+        const val androidCardView = "androidx.cardview:cardview:1.0.0"
         const val androidConstraintLayout = "androidx.constraintlayout:constraintlayout:1.1.3"
+        const val androidRecyclerView = "androidx.recyclerview:recyclerview:1.1.0"
         const val androidMaterialDesign = "com.google.android.material:material:1.1.0"
+        const val jetpackViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
+        const val jetpackLiveData = "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
+        const val koinCore = "org.koin:koin-core:$koinVersion"
+        const val koinAndroid = "org.koin:koin-android:$koinVersion"
+        const val koinAndroidViewModel = "org.koin:koin-androidx-viewmodel:$koinVersion"
     }
 
     object TestLibs {

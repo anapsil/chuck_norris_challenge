@@ -45,8 +45,14 @@ dependencies {
     implementation(Config.Libs.kotlin)
     implementation(Config.Libs.androidCoreKtx)
     implementation(Config.Libs.androidAppCompat)
-    implementation(Config.Libs.androidMaterialDesign)
+    implementation(Config.Libs.androidCardView)
     implementation(Config.Libs.androidConstraintLayout)
+    implementation(Config.Libs.androidRecyclerView)
+    implementation(Config.Libs.androidMaterialDesign)
+    implementation(Config.Libs.jetpackViewModel)
+    implementation(Config.Libs.jetpackLiveData)
+    implementation(Config.Libs.koinAndroid)
+    implementation(Config.Libs.koinAndroidViewModel)
 
     testImplementation(Config.TestLibs.junit)
 
