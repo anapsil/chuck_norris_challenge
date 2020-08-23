@@ -4,4 +4,5 @@
 
     <string name="facts_empty_state_message">Ops, no facts yet! \n\nClick on search menu for a \nChuck Norris Fact</string>
     <string name="action_share_content_description">Share fact</string>
+    <string name="no_category_label">UNCATEGORIZED</string>
 </resources>
