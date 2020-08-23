@@ -25,7 +25,7 @@ class FactsAdapterTest {
         FactModel(
             id = "XvhvQJ7JRhG_uSo7-bXLdA",
             url = "",
-            value = "Chuck Norris was once caught without a ticket on the train. The inspector was fined \$110.",
+            value = "Religons: HINDU JEWISH CHUCK NORRIS",
             listOf()
         ),
         FactModel(
@@ -89,5 +89,27 @@ class FactsAdapterTest {
         assertThat(holder.binding.factText.text)
             .isEqualTo("Chuck Norris speaks fluent Klingon, just so he can slaughter any nerd he hears speaking it.")
         assertThat(holder.binding.factCategory.text).isEqualTo("")
+    }
+
+    @Test
+    fun `when fact length is greater then 80 should change font size to 18sp`() {
+        val callback = mockk<(String) -> Unit>()
+        val holder = factsAdapter.onCreateViewHolder(parent, 0)
+
+        holder.bind(facts[1], callback)
+
+        assertThat(holder.binding.factText.text.length).isGreaterThan(80)
+        assertThat(holder.binding.factText.textSize).isEqualTo(18f)
+    }
+
+    @Test
+    fun `when fact length is at most 80 should change font size to 24sp`() {
+        val callback = mockk<(String) -> Unit>()
+        val holder = factsAdapter.onCreateViewHolder(parent, 0)
+
+        holder.bind(facts[0], callback)
+
+        assertThat(holder.binding.factText.text.length).isAtMost(80)
+        assertThat(holder.binding.factText.textSize).isEqualTo(24f)
     }
 }
