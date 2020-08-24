@@ -3,9 +3,11 @@ package dev.anapsil.chucknorris.facts.ui
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import dev.anapsil.chucknorris.common.ui.State
 import dev.anapsil.chucknorris.common.ui.shareText
 import dev.anapsil.chucknorris.common.ui.startActivityForResult
 import dev.anapsil.chucknorris.databinding.ActivityFactsBinding
+import dev.anapsil.chucknorris.facts.data.model.JokeModel
 import dev.anapsil.chucknorris.search.ui.QUERY_TERM_KEY
 import dev.anapsil.chucknorris.search.ui.SearchFactActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -24,17 +26,19 @@ class FactsActivity : AppCompatActivity() {
         bindViews()
         setupListeners()
         observeLiveData()
+        viewModel.loadCategories()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == RESULT_OK) {
             val searchTerm = data?.extras?.get(QUERY_TERM_KEY)?.toString() ?: ""
-            viewModel.searchFacts(searchTerm)
+            viewModel.searchJokes(searchTerm)
         }
     }
 
     private fun bindViews() {
+        viewModel.autoDisposable.bindTo(lifecycle)
         with(binding) {
             factsContent.factsList.adapter = factsAdapter
         }
@@ -51,10 +55,14 @@ class FactsActivity : AppCompatActivity() {
 
     private fun observeLiveData() {
         with(viewModel) {
-            facts.observe(this@FactsActivity, {
-                if (it.isNotEmpty()) {
-                    factsAdapter.updateFacts(it)
-                    binding.contentPanel.displayedChild = 1
+            state.observe(this@FactsActivity, {
+                when (it) {
+                    is State.Success -> {
+                        if (it.data is JokeModel) {
+                            factsAdapter.addJoke(it.data)
+                        }
+                        binding.contentPanel.displayedChild = 1
+                    }
                 }
             })
         }

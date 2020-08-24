@@ -1,6 +1,6 @@
 package dev.anapsil.chucknorris.facts.data.model
 
-data class FactModel(
+data class JokeModel(
     val id: String,
     val url: String,
     val value: String,

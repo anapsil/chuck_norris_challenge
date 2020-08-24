@@ -44,7 +44,6 @@ object Config {
     object TestLibs {
         const val junit = "junit:junit:4.12"
         const val androidJunitExtension = "androidx.test.ext:junit:$androidTestVersion"
-        const val androidTruthExtension = "androidx.test.ext:truth:$androidTestVersion"
         const val androidTestCore = "androidx.test:core:$androidTestVersion"
         const val googleTruth = "com.google.truth:truth:0.42"
         const val androidEspresso = "androidx.test.espresso:espresso-core:3.2.0"

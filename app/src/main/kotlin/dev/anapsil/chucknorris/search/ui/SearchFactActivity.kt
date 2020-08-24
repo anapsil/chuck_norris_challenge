@@ -12,7 +12,8 @@ const val QUERY_TERM_KEY = "query_term"
 class SearchFactActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySearchFactsBinding
     private val viewModel: SearchFactViewModel by viewModel()
-    private val adapter = PastSearchTermAdapter { saveAndSendTerm(it) }
+    private val termsAdapter = PastSearchTermAdapter { saveAndSendTerm(it) }
+    private val categoriesAdapter = CategoriesAdapter { saveAndSendTerm(it, false) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,11 +23,13 @@ class SearchFactActivity : AppCompatActivity() {
         setupListeners()
         observeLiveData()
         viewModel.loadAllTerms()
+        viewModel.loadCategories()
     }
 
     private fun bindViews() {
         with(binding) {
-            termsList.adapter = adapter
+            termsList.adapter = termsAdapter
+            categoriesList.adapter = categoriesAdapter
         }
     }
 
@@ -47,13 +50,18 @@ class SearchFactActivity : AppCompatActivity() {
     }
 
     private fun observeLiveData() {
-        viewModel.terms.observe(this, {
-            adapter.updateFacts(it)
-        })
+        with(viewModel) {
+            terms.observe(this@SearchFactActivity, {
+                termsAdapter.updateTerms(it)
+            })
+            categories.observe(this@SearchFactActivity, {
+                categoriesAdapter.updateCategories(it)
+            })
+        }
     }
 
-    private fun saveAndSendTerm(term: String) {
-        viewModel.saveTerm(term)
+    private fun saveAndSendTerm(term: String, save: Boolean = true) {
+        if (save) viewModel.saveTerm(term)
         setResult(RESULT_OK, Intent().apply { putExtra(QUERY_TERM_KEY, term) })
         finish()
     }

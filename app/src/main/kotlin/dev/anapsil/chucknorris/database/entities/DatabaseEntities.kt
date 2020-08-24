@@ -9,3 +9,8 @@ data class SearchTermEntity(
     @PrimaryKey @ColumnInfo(name = "search_term") val searchTerm: String,
     @ColumnInfo(name = "creation_date") val creationDate: Long
 )
+
+@Entity(tableName = "categories")
+data class CategoryEntity(
+    @PrimaryKey val category: String
+)

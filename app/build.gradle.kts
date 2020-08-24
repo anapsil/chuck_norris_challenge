@@ -45,6 +45,15 @@ android {
         animationsDisabled = true
     }
 
+    lintOptions {
+        disable = setOf("ObsoleteLintCustomCheck")
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
     sourceSets.configureEach {
         java.setSrcDirs(java.srcDirs + File("src/$name/kotlin"))
     }

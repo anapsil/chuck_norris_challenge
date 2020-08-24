@@ -6,7 +6,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import dev.anapsil.chucknorris.R
 import dev.anapsil.chucknorris.databinding.ItemFactsBinding
-import dev.anapsil.chucknorris.facts.data.model.FactModel
+import dev.anapsil.chucknorris.facts.data.model.JokeModel
 import dev.anapsil.chucknorris.facts.ui.FactsAdapter.FactsViewHolder
 import java.util.Locale
 
@@ -15,10 +15,10 @@ const val FONT_SIZE = 18F
 const val LARGE_FONT_SIZE = 24F
 
 class FactsAdapter(private val onShareClick: (String) -> Unit) : RecyclerView.Adapter<FactsViewHolder>() {
-    private val items = mutableListOf<FactModel>()
+    private val items = mutableListOf<JokeModel>()
 
-    fun updateFacts(newItems: List<FactModel>) {
-        items.addAll(newItems)
+    fun addJoke(newJoke: JokeModel) {
+        items.add(newJoke)
         notifyDataSetChanged()
     }
 
@@ -32,17 +32,17 @@ class FactsAdapter(private val onShareClick: (String) -> Unit) : RecyclerView.Ad
     override fun getItemCount() = items.size
 
     class FactsViewHolder(val binding: ItemFactsBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(fact: FactModel, onShareClick: (String) -> Unit) {
+        fun bind(joke: JokeModel, onShareClick: (String) -> Unit) {
             with(binding) {
-                factText.text = fact.value
+                factText.text = joke.value
                 changeFontSize(factText)
-                fact.categories.firstOrNull()?.let {
+                joke.categories.firstOrNull()?.let {
                     factCategory.text = it.toUpperCase(Locale.getDefault())
                 } ?: run {
                     factCategory.text = this.root.context.getString(R.string.no_category_label)
                 }
                 actionShare.setOnClickListener {
-                    onShareClick(fact.url)
+                    onShareClick(joke.url)
                 }
             }
         }

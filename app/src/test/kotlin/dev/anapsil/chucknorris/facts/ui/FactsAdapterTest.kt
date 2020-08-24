@@ -5,7 +5,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.google.common.truth.Truth.assertThat
 import dev.anapsil.chucknorris.R
 import dev.anapsil.chucknorris.common.ui.shareText
-import dev.anapsil.chucknorris.facts.data.model.FactModel
+import dev.anapsil.chucknorris.facts.data.model.JokeModel
 import io.mockk.Runs
 import io.mockk.every
 import io.mockk.just
@@ -26,13 +26,13 @@ class FactsAdapterTest {
     private val parent = activity.findViewById<ViewGroup>(R.id.main_view)
     private lateinit var factsAdapter: FactsAdapter
     private val facts = listOf(
-        FactModel(
+        JokeModel(
             id = "XvhvQJ7JRhG_uSo7-bXLdA",
             url = "",
             value = "Religons: HINDU JEWISH CHUCK NORRIS",
             listOf("history")
         ),
-        FactModel(
+        JokeModel(
             id = "yWXM2uHiT5O31Qo19zRURw",
             url = "https://api.chucknorris.io/jokes/yWXM2uHiT5O31Qo19zRURw",
             value = "Chuck Norris speaks fluent Klingon, just so he can slaughter any nerd he hears speaking it.",
@@ -57,7 +57,9 @@ class FactsAdapterTest {
 
     @Test
     fun `check that updateFacts adds items to list correctly`() {
-        factsAdapter.updateFacts(facts)
+        facts.forEach {
+            factsAdapter.addJoke(it)
+        }
 
         assertThat(factsAdapter.itemCount).isEqualTo(2)
     }
@@ -71,7 +73,9 @@ class FactsAdapterTest {
 
     @Test
     fun `checks that onBindViewHolder calls FactsViewHolder_bind method`() {
-        factsAdapter.updateFacts(facts)
+        facts.forEach {
+            factsAdapter.addJoke(it)
+        }
         val holder = mockk<FactsAdapter.FactsViewHolder>()
         every { holder.bind(any(), any()) } just Runs
 

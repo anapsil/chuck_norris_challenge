@@ -9,10 +9,17 @@ import java.util.Date
 
 class SearchFactViewModel(private val repository: SearchTermRepository, private val now: Date) : ViewModel() {
     val terms = MutableLiveData<List<String>>()
+    val categories = MutableLiveData<List<String>>()
 
     fun loadAllTerms() {
         viewModelScope.launch {
             terms.value = repository.getAllTerms()
+        }
+    }
+
+    fun loadCategories() {
+        viewModelScope.launch {
+            categories.value = repository.getCategories()
         }
     }
 
