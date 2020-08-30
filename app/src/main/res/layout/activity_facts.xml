@@ -33,6 +33,8 @@
         <include
             android:id="@+id/facts_content"
             layout="@layout/view_facts_list" />
+
+        <include layout="@layout/view_loading" />
     </ViewFlipper>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

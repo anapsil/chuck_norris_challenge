@@ -45,6 +45,15 @@ android {
         animationsDisabled = true
     }
 
+    lintOptions {
+        disable = setOf("ObsoleteLintCustomCheck")
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
     sourceSets.configureEach {
         java.setSrcDirs(java.srcDirs + File("src/$name/kotlin"))
     }
@@ -52,7 +61,6 @@ android {
 
 dependencies {
     implementation(Config.Libs.kotlin)
-    implementation(Config.Libs.kotlinCoroutines)
     implementation(Config.Libs.androidCoreKtx)
     implementation(Config.Libs.androidAppCompat)
     implementation(Config.Libs.androidCardView)
@@ -63,10 +71,18 @@ dependencies {
     implementation(Config.Libs.jetpackLiveData)
     implementation(Config.Libs.jetpackRoom)
     implementation(Config.Libs.jetpackRoomKtx)
+    implementation(Config.Libs.jetpackRoomRxJava2)
     kapt(Config.Libs.jetpackRoomCompiler)
 
     implementation(Config.Libs.koinAndroid)
     implementation(Config.Libs.koinAndroidViewModel)
+
+    implementation(Config.Libs.squareRetrofit)
+    implementation(Config.Libs.squareRetrofitGsonConverter)
+    implementation(Config.Libs.squareRetrofitRxJava2Adapter)
+    implementation(Config.Libs.squareOkHttpInterceptor)
+    implementation(Config.Libs.rxJava2)
+    implementation(Config.Libs.rxAndroid)
 
     testImplementation(Config.TestLibs.junit)
     testImplementation(Config.TestLibs.androidJunitExtension)

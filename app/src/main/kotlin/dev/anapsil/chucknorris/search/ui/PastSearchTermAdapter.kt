@@ -8,7 +8,7 @@ import dev.anapsil.chucknorris.databinding.ItemPastSearchTermBinding
 class PastSearchTermAdapter(private val onTermClick: (String) -> Unit) : RecyclerView.Adapter<PastSearchTermAdapter.TermViewHolder>() {
     private val terms = mutableListOf<String>()
 
-    fun updateFacts(newTerms: List<String>) {
+    fun updateTerms(newTerms: List<String>) {
         terms.addAll(newTerms)
         notifyDataSetChanged()
     }

@@ -6,6 +6,7 @@ object Config {
     const val mockkVersion = "1.10.0"
     const val androidTestVersion = "1.1.1"
     const val roomVersion = "2.2.5"
+    const val retrofitVersion = "2.9.0"
 
     object BuildPlugins {
         const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
@@ -24,7 +25,6 @@ object Config {
 
     object Libs {
         const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
-        const val kotlinCoroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9"
         const val androidCoreKtx = "androidx.core:core-ktx:1.3.1"
         const val androidAppCompat = "androidx.appcompat:appcompat:1.2.0"
         const val androidCardView = "androidx.cardview:cardview:1.0.0"
@@ -36,15 +36,21 @@ object Config {
         const val jetpackRoom = "androidx.room:room-runtime:$roomVersion"
         const val jetpackRoomCompiler = "androidx.room:room-compiler:$roomVersion"
         const val jetpackRoomKtx = "androidx.room:room-ktx:$roomVersion"
+        const val jetpackRoomRxJava2 = "androidx.room:room-rxjava2:$roomVersion"
         const val koinCore = "org.koin:koin-core:$koinVersion"
         const val koinAndroid = "org.koin:koin-android:$koinVersion"
         const val koinAndroidViewModel = "org.koin:koin-androidx-viewmodel:$koinVersion"
+        const val squareRetrofit = "com.squareup.retrofit2:retrofit:$retrofitVersion"
+        const val squareRetrofitGsonConverter = "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+        const val squareRetrofitRxJava2Adapter = "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
+        const val squareOkHttpInterceptor = "com.squareup.okhttp3:logging-interceptor:3.14.9"
+        const val rxJava2 = "io.reactivex.rxjava2:rxjava:2.2.19"
+        const val rxAndroid = "io.reactivex.rxjava2:rxandroid:2.1.1"
     }
 
     object TestLibs {
         const val junit = "junit:junit:4.12"
         const val androidJunitExtension = "androidx.test.ext:junit:$androidTestVersion"
-        const val androidTruthExtension = "androidx.test.ext:truth:$androidTestVersion"
         const val androidTestCore = "androidx.test:core:$androidTestVersion"
         const val googleTruth = "com.google.truth:truth:0.42"
         const val androidEspresso = "androidx.test.espresso:espresso-core:3.2.0"
