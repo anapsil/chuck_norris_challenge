@@ -1,9 +1,8 @@
 name: Android CI Unit Test and Code Analisys
 
 on:
-  push:
-    pull_request:
-      - '*'
+  pull_request:
+    - '*'
 
 jobs:
   build:
