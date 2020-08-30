@@ -57,9 +57,7 @@ class FactsAdapterTest {
 
     @Test
     fun `check that updateFacts adds items to list correctly`() {
-        facts.forEach {
-            factsAdapter.addJoke(it)
-        }
+        factsAdapter.addJokes(facts)
 
         assertThat(factsAdapter.itemCount).isEqualTo(2)
     }
@@ -73,9 +71,8 @@ class FactsAdapterTest {
 
     @Test
     fun `checks that onBindViewHolder calls FactsViewHolder_bind method`() {
-        facts.forEach {
-            factsAdapter.addJoke(it)
-        }
+        factsAdapter.addJokes(facts)
+
         val holder = mockk<FactsAdapter.FactsViewHolder>()
         every { holder.bind(any(), any()) } just Runs
 
