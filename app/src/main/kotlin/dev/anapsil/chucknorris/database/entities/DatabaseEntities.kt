@@ -12,5 +12,5 @@ data class SearchTermEntity(
 
 @Entity(tableName = "categories")
 data class CategoryEntity(
-    @PrimaryKey val category: String
+    @PrimaryKey @ColumnInfo(name = "category_name") val category: String
 )

@@ -25,7 +25,6 @@ object Config {
 
     object Libs {
         const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
-        const val kotlinCoroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9"
         const val androidCoreKtx = "androidx.core:core-ktx:1.3.1"
         const val androidAppCompat = "androidx.appcompat:appcompat:1.2.0"
         const val androidCardView = "androidx.cardview:cardview:1.0.0"
@@ -37,14 +36,16 @@ object Config {
         const val jetpackRoom = "androidx.room:room-runtime:$roomVersion"
         const val jetpackRoomCompiler = "androidx.room:room-compiler:$roomVersion"
         const val jetpackRoomKtx = "androidx.room:room-ktx:$roomVersion"
+        const val jetpackRoomRxJava2 = "androidx.room:room-rxjava2:$roomVersion"
         const val koinCore = "org.koin:koin-core:$koinVersion"
         const val koinAndroid = "org.koin:koin-android:$koinVersion"
         const val koinAndroidViewModel = "org.koin:koin-androidx-viewmodel:$koinVersion"
         const val squareRetrofit = "com.squareup.retrofit2:retrofit:$retrofitVersion"
         const val squareRetrofitGsonConverter = "com.squareup.retrofit2:converter-gson:$retrofitVersion"
-        const val squareRetrofitRxJava3Adapter = "com.squareup.retrofit2:adapter-rxjava3:$retrofitVersion"
-        const val rxJava3 = "io.reactivex.rxjava3:rxjava:3.0.6"
-        const val rxAndroid = "io.reactivex.rxjava3:rxandroid:3.0.0"
+        const val squareRetrofitRxJava2Adapter = "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
+        const val squareOkHttpInterceptor = "com.squareup.okhttp3:logging-interceptor:3.14.9"
+        const val rxJava2 = "io.reactivex.rxjava2:rxjava:2.2.19"
+        const val rxAndroid = "io.reactivex.rxjava2:rxandroid:2.1.1"
     }
 
     object TestLibs {

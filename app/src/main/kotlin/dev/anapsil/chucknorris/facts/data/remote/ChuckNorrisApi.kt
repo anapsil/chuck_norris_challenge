@@ -2,7 +2,7 @@ package dev.anapsil.chucknorris.facts.data.remote
 
 import dev.anapsil.chucknorris.facts.data.model.JokeModel
 import dev.anapsil.chucknorris.facts.data.model.JokesResponse
-import io.reactivex.rxjava3.core.Single
+import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
 

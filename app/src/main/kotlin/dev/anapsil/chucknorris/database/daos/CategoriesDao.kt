@@ -5,12 +5,14 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import dev.anapsil.chucknorris.database.entities.CategoryEntity
+import io.reactivex.Completable
+import io.reactivex.Single
 
 @Dao
 interface CategoriesDao {
     @Query("SELECT * FROM categories")
-    suspend fun getAll(): MutableList<CategoryEntity>
+    fun getAll(): Single<List<CategoryEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(vararg categoryEntities: CategoryEntity)
+    fun insert(categoryEntities: List<CategoryEntity>): Completable
 }

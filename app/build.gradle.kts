@@ -61,7 +61,6 @@ android {
 
 dependencies {
     implementation(Config.Libs.kotlin)
-    implementation(Config.Libs.kotlinCoroutines)
     implementation(Config.Libs.androidCoreKtx)
     implementation(Config.Libs.androidAppCompat)
     implementation(Config.Libs.androidCardView)
@@ -72,6 +71,7 @@ dependencies {
     implementation(Config.Libs.jetpackLiveData)
     implementation(Config.Libs.jetpackRoom)
     implementation(Config.Libs.jetpackRoomKtx)
+    implementation(Config.Libs.jetpackRoomRxJava2)
     kapt(Config.Libs.jetpackRoomCompiler)
 
     implementation(Config.Libs.koinAndroid)
@@ -79,8 +79,9 @@ dependencies {
 
     implementation(Config.Libs.squareRetrofit)
     implementation(Config.Libs.squareRetrofitGsonConverter)
-    implementation(Config.Libs.squareRetrofitRxJava3Adapter)
-    implementation(Config.Libs.rxJava3)
+    implementation(Config.Libs.squareRetrofitRxJava2Adapter)
+    implementation(Config.Libs.squareOkHttpInterceptor)
+    implementation(Config.Libs.rxJava2)
     implementation(Config.Libs.rxAndroid)
 
     testImplementation(Config.TestLibs.junit)

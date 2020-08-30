@@ -23,10 +23,11 @@ class SearchFactActivity : AppCompatActivity() {
         setupListeners()
         observeLiveData()
         viewModel.loadAllTerms()
-        viewModel.loadCategories()
+        viewModel.loadLocalCategories()
     }
 
     private fun bindViews() {
+        viewModel.autoDisposable.bindTo(lifecycle)
         with(binding) {
             termsList.adapter = termsAdapter
             categoriesList.adapter = categoriesAdapter

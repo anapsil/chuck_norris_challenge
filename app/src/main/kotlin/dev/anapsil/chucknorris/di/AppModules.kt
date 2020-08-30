@@ -8,11 +8,12 @@ import dev.anapsil.chucknorris.facts.ui.FactsViewModel
 import dev.anapsil.chucknorris.search.data.local.SearchTermRepository
 import dev.anapsil.chucknorris.search.ui.SearchFactViewModel
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.Date
 
@@ -26,7 +27,7 @@ val appModule = module {
     single { FactsRepository(get(), get()) }
     single { SearchTermRepository(get(), get()) }
 
-    single { Room.databaseBuilder(androidContext(), AppDatabase::class.java, "chuck-norris-facts").build() }
+    single { Room.databaseBuilder(androidContext(), AppDatabase::class.java, "chuck-norris-facts.db").build() }
     single { get<AppDatabase>().searchTermDao() }
     single { get<AppDatabase>().categoriesDao() }
 
@@ -35,9 +36,15 @@ val appModule = module {
     single {
         Retrofit.Builder()
             .baseUrl(BASE_URL)
-            .client(OkHttpClient())
-            .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
+            .client(get())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
+            .build()
+    }
+
+    single {
+        OkHttpClient.Builder()
+            .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             .build()
     }
 }

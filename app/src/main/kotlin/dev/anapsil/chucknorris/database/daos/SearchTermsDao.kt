@@ -5,12 +5,14 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import dev.anapsil.chucknorris.database.entities.SearchTermEntity
+import io.reactivex.Completable
+import io.reactivex.Single
 
 @Dao
 interface SearchTermsDao {
     @Query("SELECT * FROM search_terms ORDER BY creation_date DESC")
-    suspend fun getAll(): MutableList<SearchTermEntity>
+    fun getAll(): Single<List<SearchTermEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(vararg termEntities: SearchTermEntity)
+    fun insert(termEntities: SearchTermEntity): Completable
 }
