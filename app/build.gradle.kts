@@ -77,6 +77,12 @@ dependencies {
     implementation(Config.Libs.koinAndroid)
     implementation(Config.Libs.koinAndroidViewModel)
 
+    implementation(Config.Libs.squareRetrofit)
+    implementation(Config.Libs.squareRetrofitGsonConverter)
+    implementation(Config.Libs.squareRetrofitRxJava3Adapter)
+    implementation(Config.Libs.rxJava3)
+    implementation(Config.Libs.rxAndroid)
+
     testImplementation(Config.TestLibs.junit)
     testImplementation(Config.TestLibs.androidJunitExtension)
     testImplementation(Config.TestLibs.androidTestCore)

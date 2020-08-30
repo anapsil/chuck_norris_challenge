@@ -6,6 +6,7 @@ object Config {
     const val mockkVersion = "1.10.0"
     const val androidTestVersion = "1.1.1"
     const val roomVersion = "2.2.5"
+    const val retrofitVersion = "2.9.0"
 
     object BuildPlugins {
         const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
@@ -39,6 +40,11 @@ object Config {
         const val koinCore = "org.koin:koin-core:$koinVersion"
         const val koinAndroid = "org.koin:koin-android:$koinVersion"
         const val koinAndroidViewModel = "org.koin:koin-androidx-viewmodel:$koinVersion"
+        const val squareRetrofit = "com.squareup.retrofit2:retrofit:$retrofitVersion"
+        const val squareRetrofitGsonConverter = "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+        const val squareRetrofitRxJava3Adapter = "com.squareup.retrofit2:adapter-rxjava3:$retrofitVersion"
+        const val rxJava3 = "io.reactivex.rxjava3:rxjava:3.0.6"
+        const val rxAndroid = "io.reactivex.rxjava3:rxandroid:3.0.0"
     }
 
     object TestLibs {
