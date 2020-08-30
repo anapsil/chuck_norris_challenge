@@ -25,6 +25,7 @@ class FactsActivity : AppCompatActivity() {
         bindViews()
         setupListeners()
         observeLiveData()
+        viewModel.getLocalJokes()
         viewModel.loadCategories()
     }
 

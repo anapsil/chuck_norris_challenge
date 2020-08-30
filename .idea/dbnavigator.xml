@@ -40,6 +40,9 @@
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="14aed823-fad5-485d-b89b-394265482976" />
   </component>
+  <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="14aed823-fad5-485d-b89b-394265482976" dataset="main.jokes" active-filter-id="" />
+  </component>
   <component name="DBNavigator.Project.EditorStateManager">
     <last-used-providers />
   </component>

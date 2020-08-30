@@ -10,13 +10,15 @@ import dev.anapsil.chucknorris.facts.data.model.JokeModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class FactsViewModel(private val repositoryChuckNorris: ChuckNorrisFactsRepository) : ViewModel() {
+const val MAX_JOKES = 10
+
+class FactsViewModel(private val repository: ChuckNorrisFactsRepository) : ViewModel() {
     val autoDisposable = AutoDisposable()
     val state = MutableLiveData<State<List<JokeModel>>>()
 
     fun loadCategories() {
-        repositoryChuckNorris.getCategoriesFromApi()
-            .flatMapCompletable { repositoryChuckNorris.insertCategories(it) }
+        repository.getCategoriesFromApi()
+            .flatMapCompletable { repository.insertCategories(it) }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnError { handleError(it) }
@@ -24,12 +26,19 @@ class FactsViewModel(private val repositoryChuckNorris: ChuckNorrisFactsReposito
             .addTo(autoDisposable)
     }
 
-    fun searchJokes(query: String) = repositoryChuckNorris.searchJokes(query)
+    fun getLocalJokes() {
+        repository.getLocalJokes(MAX_JOKES)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(::handleSearchSuccess, ::handleError)
+            .addTo(autoDisposable)
+    }
+
+    fun searchJokes(query: String) = repository.searchJokes(query)
         .toList()
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .doOnSubscribe { state.value = State.Loading }
-        .doOnSuccess { repositoryChuckNorris.insertJokes(it) }
         .subscribe(::handleSearchSuccess, ::handleError)
         .addTo(autoDisposable)
 
@@ -39,5 +48,12 @@ class FactsViewModel(private val repositoryChuckNorris: ChuckNorrisFactsReposito
 
     private fun handleSearchSuccess(jokes: List<JokeModel>) {
         state.postValue(State.Success(jokes))
+//        repository.insertJokes(jokes)
+//            .subscribeOn(Schedulers.io())
+//            .observeOn(AndroidSchedulers.mainThread())
+//            .doOnError { Log.d("ERROR", it.message!!) }
+//            .doOnSuccess { jokes -> jokes.forEach { Log.d("INDEX", it.toString()) } }
+//            .subscribe()
+//            .addTo(autoDisposable)
     }
 }

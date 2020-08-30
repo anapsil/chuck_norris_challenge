@@ -26,7 +26,7 @@ class SearchFactViewModel(private val repository: ChuckNorrisFactsRepository, pr
     }
 
     fun loadLocalCategories() {
-        repository.getLocalCategories()
+        repository.getLocalCategories(MAX_CATEGORIES)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(::onCategoriesLoaded, ::onError)
@@ -46,7 +46,7 @@ class SearchFactViewModel(private val repository: ChuckNorrisFactsRepository, pr
     }
 
     private fun onCategoriesLoaded(allCategories: List<String>) {
-        categories.value = allCategories.shuffled().take(MAX_CATEGORIES)
+        categories.value = allCategories
     }
 
     private fun onError(error: Throwable) {

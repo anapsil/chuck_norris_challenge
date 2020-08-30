@@ -17,6 +17,8 @@ class ChuckNorrisFactsRepository(
     private val jokesDao: JokesDao,
     private val searchTermsDao: SearchTermsDao,
 ) {
+    fun getLocalJokes(limit: Int) = jokesDao.getJokes(limit).map { jokes -> jokes.map { JokeModel(it.id, it.url, it.value, listOf(it.category)) } }
+
     fun searchJokes(query: String) = api.searchJokes(query).flatMapObservable { Observable.fromIterable(it.result) }
 
     fun insertJokes(jokeModel: List<JokeModel>) =
@@ -28,7 +30,7 @@ class ChuckNorrisFactsRepository(
 
     fun getCategoriesFromApi() = api.getCategories()
 
-    fun getLocalCategories() = categoriesDao.getAll().map { entity -> entity.map { it.category } }
+    fun getLocalCategories(limit: Int) = categoriesDao.getAll(limit).map { entity -> entity.map { it.category } }
 
     fun insertCategories(categories: List<String>) = categoriesDao.insert(categories.map { CategoryEntity(it) })
 }

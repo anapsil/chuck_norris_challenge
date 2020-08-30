@@ -10,8 +10,8 @@ import io.reactivex.Single
 
 @Dao
 interface CategoriesDao {
-    @Query("SELECT * FROM categories")
-    fun getAll(): Single<List<CategoryEntity>>
+    @Query("SELECT * FROM categories ORDER BY RANDOM() LIMIT :limit")
+    fun getAll(limit: Int): Single<List<CategoryEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(categoryEntities: List<CategoryEntity>): Completable
