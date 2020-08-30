@@ -14,7 +14,7 @@ const val MAX_JOKES = 10
 
 class FactsViewModel(private val repository: ChuckNorrisFactsRepository) : ViewModel() {
     val autoDisposable = AutoDisposable()
-    val state = MutableLiveData<State<List<JokeModel>>>()
+    val state = MutableLiveData<State<List<JokeModel>>>(State.NoData)
 
     fun loadCategories() {
         repository.getCategoriesFromApi()
@@ -30,7 +30,7 @@ class FactsViewModel(private val repository: ChuckNorrisFactsRepository) : ViewM
         repository.getLocalJokes(MAX_JOKES)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(::handleSearchSuccess, ::handleError)
+            .subscribe({ jokes -> handleSearchSuccess(jokes, false) }, ::handleError)
             .addTo(autoDisposable)
     }
 
@@ -46,14 +46,18 @@ class FactsViewModel(private val repository: ChuckNorrisFactsRepository) : ViewM
         state.value = State.Error(throwable.message)
     }
 
-    private fun handleSearchSuccess(jokes: List<JokeModel>) {
-        state.postValue(State.Success(jokes))
-//        repository.insertJokes(jokes)
-//            .subscribeOn(Schedulers.io())
-//            .observeOn(AndroidSchedulers.mainThread())
-//            .doOnError { Log.d("ERROR", it.message!!) }
-//            .doOnSuccess { jokes -> jokes.forEach { Log.d("INDEX", it.toString()) } }
-//            .subscribe()
-//            .addTo(autoDisposable)
+    private fun handleSearchSuccess(jokes: List<JokeModel>, save: Boolean = true) {
+        if (jokes.isNotEmpty()) {
+            state.value = State.Success(jokes)
+        } else {
+            state.value = State.NoData
+        }
+        if (save) {
+            repository.insertJokes(jokes)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe()
+                .addTo(autoDisposable)
+        }
     }
 }

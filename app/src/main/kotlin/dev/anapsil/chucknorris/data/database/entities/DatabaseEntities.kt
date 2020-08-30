@@ -20,5 +20,5 @@ data class JokeEntity(
     @PrimaryKey @ColumnInfo(name = "joke_id") val id: String,
     val url: String,
     val value: String,
-    val category: String
+    val category: String?
 )

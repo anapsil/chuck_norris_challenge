@@ -58,6 +58,7 @@ class FactsActivity : AppCompatActivity() {
             state.observe(this@FactsActivity, {
                 when (it) {
                     is State.Loading -> binding.contentPanel.displayedChild = 2
+                    is State.NoData -> binding.contentPanel.displayedChild = 0
                     is State.Success -> {
                         factsAdapter.addJokes(it.data)
                         binding.contentPanel.displayedChild = 1
