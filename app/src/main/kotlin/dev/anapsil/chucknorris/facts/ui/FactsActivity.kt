@@ -7,7 +7,6 @@ import dev.anapsil.chucknorris.common.ui.State
 import dev.anapsil.chucknorris.common.ui.shareText
 import dev.anapsil.chucknorris.common.ui.startActivityForResult
 import dev.anapsil.chucknorris.databinding.ActivityFactsBinding
-import dev.anapsil.chucknorris.facts.data.model.JokeModel
 import dev.anapsil.chucknorris.search.ui.QUERY_TERM_KEY
 import dev.anapsil.chucknorris.search.ui.SearchFactActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -57,10 +56,9 @@ class FactsActivity : AppCompatActivity() {
         with(viewModel) {
             state.observe(this@FactsActivity, {
                 when (it) {
+                    is State.Loading -> binding.contentPanel.displayedChild = 2
                     is State.Success -> {
-                        if (it.data is JokeModel) {
-                            factsAdapter.addJoke(it.data)
-                        }
+                        factsAdapter.addJokes(it.data)
                         binding.contentPanel.displayedChild = 1
                     }
                 }

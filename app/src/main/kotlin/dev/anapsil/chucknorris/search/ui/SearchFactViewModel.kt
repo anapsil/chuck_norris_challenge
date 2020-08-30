@@ -5,14 +5,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import dev.anapsil.chucknorris.common.AutoDisposable
 import dev.anapsil.chucknorris.common.addTo
-import dev.anapsil.chucknorris.search.data.local.SearchTermRepository
+import dev.anapsil.chucknorris.data.ChuckNorrisFactsRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import java.util.Date
 
 const val MAX_CATEGORIES = 8
 
-class SearchFactViewModel(private val repository: SearchTermRepository, private val now: Date) : ViewModel() {
+class SearchFactViewModel(private val repository: ChuckNorrisFactsRepository, private val now: Date) : ViewModel() {
     val autoDisposable = AutoDisposable()
     val terms = MutableLiveData<List<String>>()
     val categories = MutableLiveData<List<String>>()
@@ -26,7 +26,7 @@ class SearchFactViewModel(private val repository: SearchTermRepository, private 
     }
 
     fun loadLocalCategories() {
-        repository.getCategories()
+        repository.getLocalCategories()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(::onCategoriesLoaded, ::onError)

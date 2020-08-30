@@ -1,7 +1,6 @@
-package dev.anapsil.chucknorris.facts.data.remote
+package dev.anapsil.chucknorris.data.remote
 
 import dev.anapsil.chucknorris.facts.data.model.JokeModel
-import dev.anapsil.chucknorris.facts.data.model.JokesResponse
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query

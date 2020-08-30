@@ -17,8 +17,9 @@ const val LARGE_FONT_SIZE = 24F
 class FactsAdapter(private val onShareClick: (String) -> Unit) : RecyclerView.Adapter<FactsViewHolder>() {
     private val items = mutableListOf<JokeModel>()
 
-    fun addJoke(newJoke: JokeModel) {
-        items.add(newJoke)
+    fun addJokes(newJokes: List<JokeModel>) {
+        items.clear()
+        items.addAll(newJokes)
         notifyDataSetChanged()
     }
 

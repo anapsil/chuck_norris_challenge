@@ -1,11 +1,10 @@
 package dev.anapsil.chucknorris.di
 
 import androidx.room.Room
-import dev.anapsil.chucknorris.database.AppDatabase
-import dev.anapsil.chucknorris.facts.data.FactsRepository
-import dev.anapsil.chucknorris.facts.data.remote.ChuckNorrisApi
+import dev.anapsil.chucknorris.data.ChuckNorrisFactsRepository
+import dev.anapsil.chucknorris.data.database.AppDatabase
+import dev.anapsil.chucknorris.data.remote.ChuckNorrisApi
 import dev.anapsil.chucknorris.facts.ui.FactsViewModel
-import dev.anapsil.chucknorris.search.data.local.SearchTermRepository
 import dev.anapsil.chucknorris.search.ui.SearchFactViewModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -24,12 +23,12 @@ val appModule = module {
     viewModel { FactsViewModel(get()) }
     viewModel { SearchFactViewModel(get(), get()) }
 
-    single { FactsRepository(get(), get()) }
-    single { SearchTermRepository(get(), get()) }
+    single { ChuckNorrisFactsRepository(get(), get(), get(), get()) }
 
     single { Room.databaseBuilder(androidContext(), AppDatabase::class.java, "chuck-norris-facts.db").build() }
     single { get<AppDatabase>().searchTermDao() }
     single { get<AppDatabase>().categoriesDao() }
+    single { get<AppDatabase>().jokesDao() }
 
     single { get<Retrofit>().create(ChuckNorrisApi::class.java) }
 

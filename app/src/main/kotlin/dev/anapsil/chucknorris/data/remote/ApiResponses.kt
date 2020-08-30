@@ -1,4 +1,6 @@
-package dev.anapsil.chucknorris.facts.data.model
+package dev.anapsil.chucknorris.data.remote
+
+import dev.anapsil.chucknorris.facts.data.model.JokeModel
 
 open class BaseResponse {
     var message: String? = null

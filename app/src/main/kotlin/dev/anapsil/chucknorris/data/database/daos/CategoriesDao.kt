@@ -1,10 +1,10 @@
-package dev.anapsil.chucknorris.database.daos
+package dev.anapsil.chucknorris.data.database.daos
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import dev.anapsil.chucknorris.database.entities.CategoryEntity
+import dev.anapsil.chucknorris.data.database.entities.CategoryEntity
 import io.reactivex.Completable
 import io.reactivex.Single
 
