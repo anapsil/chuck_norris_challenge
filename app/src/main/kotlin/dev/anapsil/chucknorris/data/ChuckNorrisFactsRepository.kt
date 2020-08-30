@@ -17,12 +17,14 @@ class ChuckNorrisFactsRepository(
     private val jokesDao: JokesDao,
     private val searchTermsDao: SearchTermsDao,
 ) {
-    fun getLocalJokes(limit: Int) = jokesDao.getJokes(limit).map { jokes -> jokes.map { JokeModel(it.id, it.url, it.value, listOf(it.category)) } }
+    fun getLocalJokes(limit: Int) =
+        jokesDao.getJokes(limit)
+            .map { jokes -> jokes.map { JokeModel(it.id, it.url, it.value, it.category?.let { category -> listOf(category) } ?: listOf()) } }
 
     fun searchJokes(query: String) = api.searchJokes(query).flatMapObservable { Observable.fromIterable(it.result) }
 
     fun insertJokes(jokeModel: List<JokeModel>) =
-        jokesDao.insertAll(jokeModel.map { JokeEntity(it.id, it.url, it.value, it.categories.firstOrNull() ?: "") })
+        jokesDao.insertAll(jokeModel.map { JokeEntity(it.id, it.url, it.value, it.categories.firstOrNull()) })
 
     fun getAllTerms() = searchTermsDao.getAll().map { entity -> entity.map { it.searchTerm } }
 
